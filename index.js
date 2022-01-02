@@ -11,7 +11,7 @@ client.once('ready', () => {
 });
 // ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.HZ5VrOM5ON_lzqZ3asRSSGYMoJs
 // 봇과 서버를 연결해주는 부분
-client.login('process.env.TOKEN');
+client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
