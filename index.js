@@ -60,7 +60,7 @@ client.on('message', async (message) => {
     //         const $ = cheerio.load(html.data);
     //         const test1 = $('href[#lui-tab1-1]').text();
     //         console.log(test1);
-    //     })                                                         수집품 어케가져오지?
+    //     })                                                         수집품 어떻게 가져와야?
 
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
@@ -299,7 +299,6 @@ client.on('message', async (message) => {
                 return;
             }
         }
-
 
         let saveUser = {}; // 유저 정보를 업데이트 할 변수
         // ◆ Ⅹ ◇
