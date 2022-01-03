@@ -39,6 +39,7 @@ client.on('message', async (message) => {
     const nickname3 = contentArr[3];
     const nickError = contentArr[4];
 
+    // 세공 확률
     const per = [25, 35, 45, 55, 65, 75];
 
     const id = message.author.id; // 디스코드 유저의 고유 아이디 ( 12335325 이런식 )
