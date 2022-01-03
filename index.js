@@ -9,9 +9,27 @@ const fs = require('fs'); // 디스코드 봇이 파일을 저장하고 읽는 �
 client.once('ready', () => {
     console.log('Ready!!!');
 });
-// ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.HZ5VrOM5ON_lzqZ3asRSSGYMoJs
 // 봇과 서버를 연결해주는 부분
 client.login(process.env.TOKEN);
+
+var request = require("request");
+(function () {  
+  setInterval(function () {
+    var options = {
+      method: 'GET',
+      url:
+        'https://bitpump.herokuapp.com/'
+    };
+
+    request(options, function (error, response, body) {
+      if (error) {
+        res.send(error)
+      } else {
+        res.send(body);
+      }
+    });
+  }, 600000);
+})
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
@@ -61,7 +79,7 @@ client.on('message', async (message) => {
     //         const $ = cheerio.load(html.data);
     //         const test1 = $('href[#lui-tab1-1]').text();
     //         console.log(test1);
-    //     })                                                         수집품 어케가져옴?
+    //     })                                                         수집품 어떻게 가져와야?
 
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
@@ -300,7 +318,6 @@ client.on('message', async (message) => {
                 return;
             }
         }
-
 
         let saveUser = {}; // 유저 정보를 업데이트 할 변수
         // ◆ Ⅹ ◇
