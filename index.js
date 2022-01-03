@@ -9,6 +9,7 @@ const fs = require('fs'); // 디스코드 봇이 파일을 저장하고 읽는 �
 client.once('ready', () => {
     console.log('Ready!!!');
 });
+
 // 봇과 서버를 연결해주는 부분
 client.login(process.env.TOKEN);
 
