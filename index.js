@@ -9,7 +9,6 @@ const fs = require('fs'); // 디스코드 봇이 파일을 저장하고 읽는 �
 client.once('ready', () => {
     console.log('Ready!!!');
 });
-// ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.HZ5VrOM5ON_lzqZ3asRSSGYMoJs
 // 봇과 서버를 연결해주는 부분
 client.login(process.env.TOKEN);
 
@@ -61,7 +60,7 @@ client.on('message', async (message) => {
     //         const $ = cheerio.load(html.data);
     //         const test1 = $('href[#lui-tab1-1]').text();
     //         console.log(test1);
-    //     })                                                         수집품 어케가져옴?
+    //     })                                                         수집품 어케가져오지?
 
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
