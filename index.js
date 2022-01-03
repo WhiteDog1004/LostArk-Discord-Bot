@@ -12,25 +12,6 @@ client.once('ready', () => {
 // 봇과 서버를 연결해주는 부분
 client.login(process.env.TOKEN);
 
-var request = require("request");
-(function () {  
-  setInterval(function () {
-    var options = {
-      method: 'GET',
-      url:
-        'https://bitpump.herokuapp.com/'
-    };
-
-    request(options, function (error, response, body) {
-      if (error) {
-        res.send(error)
-      } else {
-        res.send(body);
-      }
-    });
-  }, 600000);
-})
-
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
 //     const content = message.content;
@@ -58,6 +39,7 @@ client.on('message', async (message) => {
     const nickname3 = contentArr[3];
     const nickError = contentArr[4];
 
+    // 세공 확률
     const per = [25, 35, 45, 55, 65, 75];
 
     const id = message.author.id; // 디스코드 유저의 고유 아이디 ( 12335325 이런식 )
