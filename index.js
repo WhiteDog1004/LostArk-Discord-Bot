@@ -698,7 +698,7 @@ client.on('message', async (message) => {
             user.countOne--; // 돌깎기 횟수 줄임
 
             // perNum이 0 아래로 내려가는거 방지
-            if (user.perNum === 0) {
+            if (user.perNum <= 0) {
                 user.perNum = 0;
             } else {
                 user.perNum--;
@@ -708,7 +708,7 @@ client.on('message', async (message) => {
             if (user.countOne === 10) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -745,7 +745,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 9) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -782,7 +782,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 8) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -819,7 +819,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 7) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -856,7 +856,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 6) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -893,7 +893,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 5) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -930,7 +930,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 4) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -967,7 +967,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 3) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1004,7 +1004,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 2) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1041,7 +1041,7 @@ client.on('message', async (message) => {
             } else if (user.countOne === 1) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1419,7 +1419,7 @@ client.on('message', async (message) => {
             user.countTwo--; // 돌깎기 횟수 줄임
 
             // perNum이 0 아래로 내려가는거 방지
-            if (user.perNum === 0) {
+            if (user.perNum <= 0) {
                 user.perNum = 0;
             } else {
                 user.perNum--;
@@ -1429,7 +1429,7 @@ client.on('message', async (message) => {
             if (user.countTwo === 10) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1466,7 +1466,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 9) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1503,7 +1503,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 8) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1540,7 +1540,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 7) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1577,7 +1577,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 6) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1614,7 +1614,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 5) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1651,7 +1651,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 4) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1688,7 +1688,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 3) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1725,7 +1725,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 2) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -1762,7 +1762,7 @@ client.on('message', async (message) => {
             } else if (user.countTwo === 1) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2141,7 +2141,7 @@ client.on('message', async (message) => {
             user.countThr--; // 돌깎기 횟수 줄임
 
             // perNum이 0 아래로 내려가는거 방지
-            if (user.perNum === 0) {
+            if (user.perNum <= 0) {
                 user.perNum = 0;
             } else {
                 user.perNum--;
@@ -2151,7 +2151,7 @@ client.on('message', async (message) => {
             if (user.countThr === 10) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2188,7 +2188,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 9) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2225,7 +2225,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 8) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2262,7 +2262,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 7) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2299,7 +2299,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 6) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2336,7 +2336,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 5) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2373,7 +2373,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 4) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2410,7 +2410,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 3) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2447,7 +2447,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 2) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
@@ -2484,7 +2484,7 @@ client.on('message', async (message) => {
             } else if (user.countThr === 1) {
 
                 // perNum이 5 위로 올라가는거 방지
-                if (user.perNum === 5) {
+                if (user.perNum >= 5) {
                     user.perNum = 5;
                 } else {
                     user.perNum++;
