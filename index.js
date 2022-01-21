@@ -7,6 +7,7 @@ const fs = require('fs'); // 디스코드 봇이 파일을 저장하고 읽는 �
 app.listen(process.env.PORT || 3000, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
 // discord 봇이 실행될 때 딱 한 번 실행할 코드를 적는 부분
 client.once('ready', () => {
     console.log('Ready!!!');
