@@ -11,6 +11,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.dqA4ECloqt9wqG5uQWiTcbdQRWQ");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -309,7 +310,7 @@ client.on('message', async (message) => {
             let atherAb1 = user.oneAb.join(' '); // 배열 , 제거해서 보여주기
             let atherAb2 = user.twoAb.join(' ');
             let atherAb3 = user.thrAb.join(' ');
-            
+
             embed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .addField(`확률`, '```css\n' + `${per[user.perNum]}%` + '\n```')
@@ -362,6 +363,30 @@ client.on('message', async (message) => {
         message.channel.send(embed)
     }
 
+    if (command === '!오늘' || command === '!숙제') {
+        var moment = require('moment');
+
+        // 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
+        const week = moment().day();
+        const days = ["일", "월", "화", "수", "목", "금", "토"]
+        const work = [
+            "필드보스\n카오스게이트",
+            "카오스게이트",
+            "필드보스\n유령선",
+            "로요일 없음!",
+            "유령선\n카오스게이트",
+            "필드보스",
+            "유령선\n카오스게이트",
+        ]
+
+        embed = new Discord.MessageEmbed()
+            .setColor('YELLOW')
+            .addField(`오늘은 ${days[week]}요일 입니다!`, '```css\n' + work[week] + '\n```')
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+        return;
+    }
+
     if (command === '!1') {
         let saveUser = {};
 
@@ -387,7 +412,7 @@ client.on('message', async (message) => {
             message.channel.send(embed)
             return;
         }
-        
+
         // 101은 미포함
         const ranNum = Math.floor(Math.random() * 101);
 
