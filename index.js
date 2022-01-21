@@ -360,7 +360,6 @@ client.on('message', async (message) => {
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
     }
-
     if (command === '!오늘' || command === '!숙제') {
         var moment = require('moment');
 
