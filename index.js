@@ -4,13 +4,18 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs'); // 디스코드 봇이 파일을 저장하고 읽는 모듈 -파일 시스템
 
+const moment = require('moment'); // 날짜 라이브러리
+require('moment-timezone');
+moment.tz.setDefault("Asia/Seoul");
+
+
 // discord 봇이 실행될 때 딱 한 번 실행할 코드를 적는 부분
 client.once('ready', () => {
     console.log('Ready!!!');
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.dqA4ECloqt9wqG5uQWiTcbdQRWQ");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.yRPjFa978jlEzwioqXL6gVzcn6U");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -62,6 +67,16 @@ client.on('message', async (message) => {
     //         const test1 = $('href[#lui-tab1-1]').text();
     //         console.log(test1);
     //     })                                                         수집품 어떻게 가져와야?
+    // setInterval(function () {
+    //     if (moment().format('mm') === "35") {
+    //         embed = new Discord.MessageEmbed()
+    //             .setColor('RED')
+    //             .addField(`${name}님!`, `테스트`)
+    //             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+    //         message.channel.send(embed)
+    //         return;
+    //     }
+    // }, 60000)
 
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
@@ -361,8 +376,6 @@ client.on('message', async (message) => {
         message.channel.send(embed)
     }
     if (command === '!오늘' || command === '!숙제') {
-        var moment = require('moment');
-
         // 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
         const week = moment().day();
         const days = ["일", "월", "화", "수", "목", "금", "토"]
@@ -378,7 +391,12 @@ client.on('message', async (message) => {
 
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
-            .addField(`오늘은 ${days[week]}요일 입니다!`, '```css\n' + work[week] + '\n```')
+            .addField(`${days[week]}요일\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분`,
+                '```css\n' + `${moment().format('a') === "am"
+                    ? moment().format('hh') <= "5"
+                        ? work[week - 1]
+                        : work[week]
+                    : work[week]}` + '\n```')
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
         return;
