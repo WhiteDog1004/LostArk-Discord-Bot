@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.Cy5d2AIGhCQrH_bSnyGMO1Ud-84");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.r1Cpj1YD1q6ooylooM8GiY-wfMo");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -380,26 +380,26 @@ client.on('message', async (message) => {
         const week = moment().day();
         const days = ["일", "월", "화", "수", "목", "금", "토"]
         const work = [
-            "필드보스\n카오스게이트",
-            "카오스게이트",
+            "필드보스\n카오스 게이트\n[ 점령 이벤트 ]",
+            "카오스 게이트",
             "필드보스\n유령선",
             "로요일 없음!",
-            "유령선\n카오스게이트",
+            "유령선\n카오스 게이트",
             "필드보스",
-            "유령선\n카오스게이트",
+            "유령선\n카오스 게이트\n[ 점령 이벤트 ]",
         ]
 
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
             .addField(`${moment().format('a') === "am"
-                    ? moment().format('hh') <= "5"
-                        ? week === 0
-                            ? days[6]
-                            : days[week]
+                ? moment().format('hh') <= 5
+                    ? week === 0
+                        ? days[6]
                         : days[week]
-                    : days[week]}요일 :exclamation:새벽엔 전 요일로 표시\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분`,
+                    : days[week]
+                : days[week]}요일 :exclamation:새벽엔 전 요일로 표시\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분\n\n:bell:`,
                 '```css\n' + `${moment().format('a') === "am"
-                    ? moment().format('hh') <= "5"
+                    ? moment().format('hh') <= 5
                         ? week === 0
                             ? work[week]
                             : work[week - 1]
