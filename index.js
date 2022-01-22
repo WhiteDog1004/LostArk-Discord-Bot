@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.yRPjFa978jlEzwioqXL6gVzcn6U");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.Cy5d2AIGhCQrH_bSnyGMO1Ud-84");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -391,10 +391,18 @@ client.on('message', async (message) => {
 
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
-            .addField(`${days[week]}요일\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분`,
+            .addField(`${moment().format('a') === "am"
+                    ? moment().format('hh') <= "5"
+                        ? week === 0
+                            ? days[6]
+                            : days[week]
+                        : days[week]
+                    : days[week]}요일 :exclamation:새벽엔 전 요일로 표시\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분`,
                 '```css\n' + `${moment().format('a') === "am"
                     ? moment().format('hh') <= "5"
-                        ? work[week - 1]
+                        ? week === 0
+                            ? work[week]
+                            : work[week - 1]
                         : work[week]
                     : work[week]}` + '\n```')
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
