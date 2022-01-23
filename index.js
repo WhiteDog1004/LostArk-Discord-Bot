@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.r1Cpj1YD1q6ooylooM8GiY-wfMo");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.WiN2YAEyLj_bjhlMQyJy9y0a4zE");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -77,6 +77,18 @@ client.on('message', async (message) => {
     //         return;
     //     }
     // }, 60000)
+
+    if (command === '!시너지') {
+
+        embed = new Discord.MessageEmbed()
+            .setColor('YELLOW')
+            .setTitle('시너지')
+            .setImage('https://i.imgur.com/2BC72ka.jpeg')
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+        return;
+    }
+
 
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
