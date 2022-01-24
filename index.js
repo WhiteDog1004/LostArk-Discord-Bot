@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.6IQMqdgcbKV6VFKbBgLohVs3WGY");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.1Ws4f_hpCy6R_RN38RxfTXgsCuE");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -400,6 +400,48 @@ client.on('message', async (message) => {
             "필드보스",
             "유령선\n카오스 게이트\n[ 점령 이벤트 ]",
         ]
+
+        embed = new Discord.MessageEmbed()
+            .setColor('YELLOW')
+            .addField(`${moment().format('a') === "am"
+                ? moment().format('hh') <= 5
+                    ? week === 0
+                        ? days[6]
+                        : days[week - 1]
+                    : days[week]
+                : days[week]}요일 :exclamation:새벽엔 전 요일로 표시\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분\n\n:bell:`,
+                '```css\n' + `${moment().format('a') === "am"
+                    ? moment().format('hh') <= 5
+                        ? week === 0
+                            ? work[week]
+                            : work[week - 1]
+                        : work[week]
+                    : work[week]}` + '\n```')
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+        return;
+    }
+    if (command === '!내일' || command === '!내일숙제') {
+        // 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
+        const week = moment().day();
+        const days = ["월", "화", "수", "목", "금", "토", "일"]
+        const work = [
+            "카오스 게이트",
+            "필드보스\n유령선",
+            "로요일 없음!",
+            "유령선\n카오스 게이트",
+            "필드보스",
+            "유령선\n카오스 게이트\n[ 점령 이벤트 ]",
+            "필드보스\n카오스 게이트\n[ 점령 이벤트 ]",
+        ]
+
+        // "필드보스\n카오스 게이트\n[ 점령 이벤트 ]",      일
+        // "카오스 게이트",                                 월
+        // "필드보스\n유령선",                              화
+        // "로요일 없음!",                                  수
+        // "유령선\n카오스 게이트",                         목
+        // "필드보스",                                      금
+        // "유령선\n카오스 게이트\n[ 점령 이벤트 ]",        토
 
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
