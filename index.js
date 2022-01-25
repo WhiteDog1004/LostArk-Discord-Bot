@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.VN88BQm88h9AJMXljgvD4_DzZXA");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.NKCuRVrjoVUmYJb4vFsQkdKisxU");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -93,7 +93,7 @@ client.on('message', async (message) => {
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
-            .addField('!뽑기 닉네임1 닉네임2 닉네임3', '```css\n' + ' 최대 3명까지 입력 가능하고 그 중에 하나를 뽑습니다 ' + '\n```')
+            .addField('!뽑기 닉네임1 닉네임2 닉네임3 ···', '```css\n' + ' 원하는 인원 만큼 입력 가능하고 그 중에 한명을 뽑습니다 ' + '\n```')
             .addField('!정보 닉네임', '```css\n' + ' 로스트아크 캐릭터 정보를 가져옵니다 ' + '\n```')
             .addField('!숙제 & !오늘', '```css\n' + ' 오늘의 캘린더 일정을 확인합니다 ' + '\n```')
             .addField('!내일숙제 & !내일', '```css\n' + ' 다음 날 캘린더 일정을 확인합니다 ' + '\n```')
