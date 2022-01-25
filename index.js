@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.NKCuRVrjoVUmYJb4vFsQkdKisxU");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.UJx6t9FxaCHxeYFCiz0kLEGEdoc");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -95,6 +95,7 @@ client.on('message', async (message) => {
             .setColor('YELLOW')
             .addField('!뽑기 닉네임1 닉네임2 닉네임3 ···', '```css\n' + ' 원하는 인원 만큼 입력 가능하고 그 중에 한명을 뽑습니다 ' + '\n```')
             .addField('!정보 닉네임', '```css\n' + ' 로스트아크 캐릭터 정보를 가져옵니다 ' + '\n```')
+            .addField('!시너지', '```css\n' + ' 직업의 시너지 이미지를 가져옵니다 ' + '\n```')
             .addField('!숙제 & !오늘', '```css\n' + ' 오늘의 캘린더 일정을 확인합니다 ' + '\n```')
             .addField('!내일숙제 & !내일', '```css\n' + ' 다음 날 캘린더 일정을 확인합니다 ' + '\n```')
             .addField('!돌깎기 각인1 각인2 각인3', '```css\n' + ' 돌 시뮬레이터 [ 채팅러쉬 주의 ] \n 돌 생성 후 아래 명령어를 이용해서 돌을 깎습니다 \n [ !1 : 1번각인 ] [ !2 : 2번각인 ] [ !3 : 3번각인 ] \n !돌깎기 종료 : 명령어를 이용해서 시뮬레이터를 끝낼 수 있습니다' + '\n```')
