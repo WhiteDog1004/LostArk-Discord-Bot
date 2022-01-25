@@ -15,8 +15,8 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.1Ws4f_hpCy6R_RN38RxfTXgsCuE");
-client.login(process.env.TOKEN);
+client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.VN88BQm88h9AJMXljgvD4_DzZXA");
+// client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
@@ -95,21 +95,14 @@ client.on('message', async (message) => {
             .setColor('YELLOW')
             .addField('!뽑기 닉네임1 닉네임2 닉네임3', '```css\n' + ' 최대 3명까지 입력 가능하고 그 중에 하나를 뽑습니다 ' + '\n```')
             .addField('!정보 닉네임', '```css\n' + ' 로스트아크 캐릭터 정보를 가져옵니다 ' + '\n```')
+            .addField('!숙제 & !오늘', '```css\n' + ' 오늘의 캘린더 일정을 확인합니다 ' + '\n```')
+            .addField('!내일숙제 & !내일', '```css\n' + ' 다음 날 캘린더 일정을 확인합니다 ' + '\n```')
             .addField('!돌깎기 각인1 각인2 각인3', '```css\n' + ' 돌 시뮬레이터 [ 채팅러쉬 주의 ] \n 돌 생성 후 아래 명령어를 이용해서 돌을 깎습니다 \n [ !1 : 1번각인 ] [ !2 : 2번각인 ] [ !3 : 3번각인 ] \n !돌깎기 종료 : 명령어를 이용해서 시뮬레이터를 끝낼 수 있습니다' + '\n```')
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
         return;
     }
     if (randomCommand === '!뽑기') {
-        // 4명 이상 입력 했을 시
-        if (nickError !== undefined) {
-            embed = new Discord.MessageEmbed()
-                .setColor('RED')
-                .addField('에러', '```css\n' + '최대 3명까지 입력 가능합니다 ' + '\n```')
-                .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
-            message.channel.send(embed)
-            return;
-        }
         // 1명만 입력 했을 시
         if (nickname2 === undefined) {
             embed = new Discord.MessageEmbed()
@@ -119,42 +112,21 @@ client.on('message', async (message) => {
             message.channel.send(embed)
             return;
         }
+        // 3명이상 입력 했을 시
+        const ranNum = Math.random();
+        const ranNum2 = Math.floor((ranNum * (contentArr.length - 1)) + 1);
 
-        // 2명 입력 했을 시
-        if (nickname3 === undefined) {
-            const ranNum = Math.random();
-            const ranNum2 = Math.floor((ranNum * (contentArr.length - 1)) + 1);
+        message.channel.send('과연 누가 뽑힐까요? 두구두구두구~~')
+        const result = contentArr[ranNum2];
 
-            message.channel.send('과연 누가 뽑힐까요? 두구두구두구~~')
-            const result = contentArr[ranNum2];
-
-            setTimeout(() => {
-                embed = new Discord.MessageEmbed()
-                    .setColor('BLACK')
-                    .addField('뽑기', '```css\n' + '경 [ ' + result + ' ] 축' + '\n```')
-                    .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
-                message.channel.send(embed)
-            }, 3000)
-            return;
-        }
-
-        // 3명 입력 했을 시
-        if (nickError === undefined) {
-            const ranNum = Math.random();
-            const ranNum2 = Math.floor((ranNum * (contentArr.length - 1)) + 1);
-
-            message.channel.send('과연 누가 뽑힐까요? 두구두구두구~~')
-            const result = contentArr[ranNum2];
-
-            setTimeout(() => {
-                embed = new Discord.MessageEmbed()
-                    .setColor('BLACK')
-                    .addField('뽑기', '```css\n' + '경 [ ' + result + ' ] 축' + '\n```')
-                    .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
-                message.channel.send(embed)
-            }, 3000)
-            return;
-        }
+        setTimeout(() => {
+            embed = new Discord.MessageEmbed()
+                .setColor('BLACK')
+                .addField('뽑기', '```css\n' + '경 [ ' + result + ' ] 축' + '\n```')
+                .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+            message.channel.send(embed)
+        }, 3000)
+        return;
     }
     if (command === '!정보') {
 
@@ -451,7 +423,7 @@ client.on('message', async (message) => {
                         ? days[6]
                         : days[week - 1]
                     : days[week]
-                : days[week]}요일 :exclamation:새벽엔 전 요일로 표시\n${moment().format('a') === "pm" ? '오후' : '오전'} ${moment().format('hh')}시 ${moment().format('mm')}분\n\n:bell:`,
+                : days[week]}요일 숙제`,
                 '```css\n' + `${moment().format('a') === "am"
                     ? moment().format('hh') <= 5
                         ? week === 0
