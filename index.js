@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.UJx6t9FxaCHxeYFCiz0kLEGEdoc");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.7H3i4Cmn5gjWMOen95A0bRseN94");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -67,6 +67,7 @@ client.on('message', async (message) => {
     //         const test1 = $('href[#lui-tab1-1]').text();
     //         console.log(test1);
     //     })                                                         수집품 어떻게 가져와야?
+
     // setInterval(function () {
     //     if (moment().format('mm') === "35") {
     //         embed = new Discord.MessageEmbed()
@@ -93,7 +94,7 @@ client.on('message', async (message) => {
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
-            .addField('!뽑기 닉네임1 닉네임2 닉네임3 ···', '```css\n' + ' 원하는 인원 만큼 입력 가능하고 그 중에 한명을 뽑습니다 ' + '\n```')
+            .addField('!뽑기 닉네임1 닉네임2 닉네임3 ···', '```css\n' + ' 원하는 인원만큼 입력 가능하고 그중에 한명을 뽑습니다 ' + '\n```')
             .addField('!정보 닉네임', '```css\n' + ' 로스트아크 캐릭터 정보를 가져옵니다 ' + '\n```')
             .addField('!시너지', '```css\n' + ' 직업의 시너지 이미지를 가져옵니다 ' + '\n```')
             .addField('!숙제 & !오늘', '```css\n' + ' 오늘의 캘린더 일정을 확인합니다 ' + '\n```')
@@ -140,7 +141,7 @@ client.on('message', async (message) => {
         const userName = $("span.profile-character-info__name").text();
         const server = $('span.profile-character-info__server').attr('title').slice(1);
 
-        if (server === undefined) {
+        if (server === undefined || nickname === undefined) {
             embed = new Discord.MessageEmbed()
                 .setColor('RED')
                 .setTitle('캐릭터 정보가 없습니다')
@@ -155,7 +156,6 @@ client.on('message', async (message) => {
         const icon = $('img.profile-character-info__img').attr('src');
         const itemLevel = $('div.level-info2__expedition span:nth-of-type(2)').text();
         const guild = $('div.game-info__guild span:nth-of-type(2)').text();
-
 
         const ability = $('div.profile-ability-engrave div ul li span');
         const ability1 = $(ability[0]).text();
@@ -266,6 +266,86 @@ client.on('message', async (message) => {
                 .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
             message.channel.send(embed)
         }
+    }
+    if (command === '!내실') {
+        const encodeNickName = encodeURI(nickname);
+        let html2 = await axios.get(`https://loawa.com/char/${encodeNickName}`);
+        let $2 = cheerio.load(html2.data);
+
+        // 섬의마음
+        let collectIslandNum = $2("#collTab li:nth-of-type(1) a > span:not(.text-red)").text();
+        let collectIslandRes = collectIslandNum.split('\n');
+        collectIslandRes[0] = Number(collectIslandRes[0]);
+        collectIslandRes[1] = Number(collectIslandRes[1]);
+
+        // 오르페우스의 별
+        let collectStarNum = $2("#collTab li:nth-of-type(2) a > span:not(.text-red)").text();
+        let collectStarRes = collectStarNum.split('\n');
+        collectStarRes[0] = Number(collectStarRes[0]);
+        collectStarRes[1] = Number(collectStarRes[1]);
+
+        // 거인의 심장
+        let collectGiantNum = $2("#collTab li:nth-of-type(3) a > span:not(.text-red)").text();
+        let collectGiantRes = collectGiantNum.split('\n');
+        collectGiantRes[0] = Number(collectGiantRes[0]);
+        collectGiantRes[1] = Number(collectGiantRes[1]);
+
+        // 위대한 미술품
+        let collectArtNum = $2("#collTab li:nth-of-type(4) a > span:not(.text-red)").text();
+        let collectArtRes = collectArtNum.split('\n');
+        collectArtRes[0] = Number(collectArtRes[0]);
+        collectArtRes[1] = Number(collectArtRes[1]);
+
+        // 모코코 씨앗
+        let collectMococoNum = $2("#collTab li:nth-of-type(5) a > span:not(.text-red)").text();
+        let collectMococoRes = collectMococoNum.split('\n');
+        collectMococoRes[0] = Number(collectMococoRes[0]);
+        collectMococoRes[1] = Number(collectMococoRes[1]);
+
+        // 향해 모험물
+        let collectSeaNum = $2("#collTab li:nth-of-type(6) a > span:not(.text-red)").text();
+        let collectSeaRes = collectSeaNum.split('\n');
+        collectSeaRes[0] = Number(collectSeaRes[0]);
+        collectSeaRes[1] = Number(collectSeaRes[1]);
+
+        // 이그네아의 징표
+        let collectIgNum = $2("#collTab li:nth-of-type(7) a > span:not(.text-red)").text();
+        let collectIgRes = collectIgNum.split('\n');
+        collectIgRes[0] = Number(collectIgRes[0]);
+        collectIgRes[1] = Number(collectIgRes[1]);
+
+        // 세계수의 잎
+        let collectLeafNum = $2("#collTab li:nth-of-type(8) a > span:not(.text-red)").text();
+        let collectLeafRes = collectLeafNum.split('\n');
+        collectLeafRes[0] = Number(collectLeafRes[0]);
+        collectLeafRes[1] = Number(collectLeafRes[1]);
+
+        if (nickname === undefined) {
+            embed = new Discord.MessageEmbed()
+                .setColor('RED')
+                .setTitle('캐릭터 정보가 없습니다')
+                .setDescription(`다시 한번 확인해 주세요`)
+                .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+            message.channel.send(embed)
+            return;
+        }
+
+        embed = new Discord.MessageEmbed()
+            .setColor('RED')
+            .setTitle('수집형 포인트')
+            .addField('내실', '```cs\n'
+                + `섬의 마음 : ${collectIslandRes[0]} / ${collectIslandRes[0] + collectIslandRes[1]}`
+                + '\n' + `오르페우스의 별 : ${collectStarRes[0]} / ${collectStarRes[0] + collectStarRes[1]}`
+                + '\n' + `거인의 심장 : ${collectGiantRes[0]} / ${collectGiantRes[0] + collectGiantRes[1]}`
+                + '\n' + `위대한 미술품 : ${collectArtRes[0]} / ${collectArtRes[0] + collectArtRes[1]}`
+                + '\n' + `모코코 씨앗 : ${collectMococoRes[0]} / ${collectMococoRes[0] + collectMococoRes[1]}`
+                + '\n' + `향해 모험물 : ${collectSeaRes[0]} / ${collectSeaRes[0] + collectSeaRes[1]}`
+                + '\n' + `이그네아의 징표 : ${collectIgRes[0]} / ${collectIgRes[0] + collectIgRes[1]}`
+                + '\n' + `세계수의 잎 : ${collectLeafRes[0]} / ${collectLeafRes[0] + collectLeafRes[1]}`
+                + '```', false)
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+        return;
     }
     if (command === '!돌깎기') {
         if (message.author.bot) return; // 무한반복 방지 코드
