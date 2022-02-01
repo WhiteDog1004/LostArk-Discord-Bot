@@ -15,8 +15,8 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.ZsXkNjh2iJyVWec3YbjViagv4Kk");
-client.login(process.env.TOKEN);
+client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.Fpj4vXHq2QAg1pARVHPi4O5Uyrw");
+// client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
@@ -269,54 +269,55 @@ client.on('message', async (message) => {
     }
     if (command === '!내실') {
         const encodeNickName = encodeURI(nickname);
-        let html2 = await axios.get(`https://loawa.com/char/${encodeNickName}`);
+        let html2 = await axios.get(`https://www.mgx.kr/lostark/character/?character_name=${encodeNickName}`);
         let $2 = cheerio.load(html2.data);
 
         // 섬의마음
-        let collectIslandNum = $2("#collTab li:nth-of-type(1) a > span:not(.text-red)").text();
-        let collectIslandRes = collectIslandNum.split('\n');
+        let collectIslandNum = $2(".collecting_detail_box div:nth-of-type(1) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectIslandRes = collectIslandNum.split('/');
         collectIslandRes[0] = Number(collectIslandRes[0]);
         collectIslandRes[1] = Number(collectIslandRes[1]);
 
         // 오르페우스의 별
-        let collectStarNum = $2("#collTab li:nth-of-type(2) a > span:not(.text-red)").text();
-        let collectStarRes = collectStarNum.split('\n');
+        let collectStarNum = $2(".collecting_detail_box div:nth-of-type(2) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectStarRes = collectStarNum.split('/');
         collectStarRes[0] = Number(collectStarRes[0]);
         collectStarRes[1] = Number(collectStarRes[1]);
 
         // 거인의 심장
-        let collectGiantNum = $2("#collTab li:nth-of-type(3) a > span:not(.text-red)").text();
-        let collectGiantRes = collectGiantNum.split('\n');
+        let collectGiantNum = $2(".collecting_detail_box div:nth-of-type(3) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectGiantRes = collectGiantNum.split('/');
         collectGiantRes[0] = Number(collectGiantRes[0]);
         collectGiantRes[1] = Number(collectGiantRes[1]);
 
         // 위대한 미술품
-        let collectArtNum = $2("#collTab li:nth-of-type(4) a > span:not(.text-red)").text();
-        let collectArtRes = collectArtNum.split('\n');
+        let collectArtNum = $2(".collecting_detail_box div:nth-of-type(4) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectArtRes = collectArtNum.split('/');
         collectArtRes[0] = Number(collectArtRes[0]);
         collectArtRes[1] = Number(collectArtRes[1]);
 
         // 모코코 씨앗
-        let collectMococoNum = $2("#collTab li:nth-of-type(5) a > span:not(.text-red)").text();
-        let collectMococoRes = collectMococoNum.split('\n');
+        let collectMococoNum = $2(".collecting_detail_box div:nth-of-type(5) div:nth-of-type(2) .collecting_active_top .collecting_active_count").text();
+        let collectMococoRes = collectMococoNum.split('/');
         collectMococoRes[0] = Number(collectMococoRes[0]);
         collectMococoRes[1] = Number(collectMococoRes[1]);
 
         // 향해 모험물
-        let collectSeaNum = $2("#collTab li:nth-of-type(6) a > span:not(.text-red)").text();
-        let collectSeaRes = collectSeaNum.split('\n');
+        let collectSeaNum = $2(".collecting_detail_box div:nth-of-type(6) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectSeaRes = collectSeaNum.split('/');
         collectSeaRes[0] = Number(collectSeaRes[0]);
         collectSeaRes[1] = Number(collectSeaRes[1]);
 
         // 이그네아의 징표
-        let collectIgNum = $2("#collTab li:nth-of-type(7) a > span:not(.text-red)").text();
-        let collectIgRes = collectIgNum.split('\n');
+        let collectIgNum = $2(".collecting_detail_box div:nth-of-type(7) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        let collectIgRes = collectIgNum.split('/');
         collectIgRes[0] = Number(collectIgRes[0]);
         collectIgRes[1] = Number(collectIgRes[1]);
 
         // 세계수의 잎
-        let collectLeafNum = $2("#collTab li:nth-of-type(8) a > span:not(.text-red)").text();
-        let collectLeafRes = collectLeafNum.split('\n');
+        let collectLeafNum = $2(".collecting_detail_box div:nth-of-type(9) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
+        console.log(collectLeafNum);
+        let collectLeafRes = collectLeafNum.split('/');
         collectLeafRes[0] = Number(collectLeafRes[0]);
         collectLeafRes[1] = Number(collectLeafRes[1]);
 
@@ -334,14 +335,14 @@ client.on('message', async (message) => {
             .setColor('RED')
             .setTitle('수집형 포인트')
             .addField('내실', '```cs\n'
-                + `섬의 마음 : ${collectIslandRes[0]} / ${collectIslandRes[0] + collectIslandRes[1]}`
-                + '\n' + `오르페우스의 별 : ${collectStarRes[0]} / ${collectStarRes[0] + collectStarRes[1]}`
-                + '\n' + `거인의 심장 : ${collectGiantRes[0]} / ${collectGiantRes[0] + collectGiantRes[1]}`
-                + '\n' + `위대한 미술품 : ${collectArtRes[0]} / ${collectArtRes[0] + collectArtRes[1]}`
-                + '\n' + `모코코 씨앗 : ${collectMococoRes[0]} / ${collectMococoRes[0] + collectMococoRes[1]}`
-                + '\n' + `향해 모험물 : ${collectSeaRes[0]} / ${collectSeaRes[0] + collectSeaRes[1]}`
-                + '\n' + `이그네아의 징표 : ${collectIgRes[0]} / ${collectIgRes[0] + collectIgRes[1]}`
-                + '\n' + `세계수의 잎 : ${collectLeafRes[0]} / ${collectLeafRes[0] + collectLeafRes[1]}`
+                + `섬의 마음 : ${collectIslandRes[0]} / ${collectIslandRes[1]}`
+                + '\n' + `오르페우스의 별 : ${collectStarRes[0]} / ${collectStarRes[1]}`
+                + '\n' + `거인의 심장 : ${collectGiantRes[0]} / ${collectGiantRes[1]}`
+                + '\n' + `위대한 미술품 : ${collectArtRes[0]} / ${collectArtRes[1]}`
+                + '\n' + `모코코 씨앗 : ${collectMococoRes[0]} / ${collectMococoRes[1]}`
+                + '\n' + `향해 모험물 : ${collectSeaRes[0]} / ${collectSeaRes[1]}`
+                + '\n' + `이그네아의 징표 : ${collectIgRes[0]} / ${collectIgRes[1]}`
+                + '\n' + `세계수의 잎 : ${collectLeafRes[0]} / ${collectLeafRes[1]}`
                 + '```', false)
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
