@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.7H3i4Cmn5gjWMOen95A0bRseN94");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.TKxk48Dk-vLYRqGgVg8IxbhZrzw");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -2683,4 +2683,6 @@ client.on('message', async (message) => {
         fs.writeFileSync(filePath, JSON.stringify(saveUser));
         return;
     }
+}).catch((error)=> {
+    console.log(error);
 });
