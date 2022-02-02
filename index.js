@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.Fpj4vXHq2QAg1pARVHPi4O5Uyrw");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.fnhZu4y2Giw9449awmBhRmgNzac");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -316,7 +316,6 @@ client.on('message', async (message) => {
 
         // 세계수의 잎
         let collectLeafNum = $2(".collecting_detail_box div:nth-of-type(9) .collecting_active_section div:nth-of-type(1) .collecting_active_count").text();
-        console.log(collectLeafNum);
         let collectLeafRes = collectLeafNum.split('/');
         collectLeafRes[0] = Number(collectLeafRes[0]);
         collectLeafRes[1] = Number(collectLeafRes[1]);
@@ -330,11 +329,19 @@ client.on('message', async (message) => {
             message.channel.send(embed)
             return;
         }
-
+        if (Number.isNaN(Number(collectIslandRes[1]))) {
+            embed = new Discord.MessageEmbed()
+                .setColor('RED')
+                .setTitle('캐릭터 정보가 없습니다')
+                .setDescription(`다시 한번 확인해 주세요`)
+                .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+            message.channel.send(embed)
+            return;
+        }
         embed = new Discord.MessageEmbed()
             .setColor('RED')
             .setTitle('수집형 포인트')
-            .addField('내실', '```cs\n'
+            .addField(`${nickname}`, '```cs\n'
                 + `섬의 마음 : ${collectIslandRes[0]} / ${collectIslandRes[1]}`
                 + '\n' + `오르페우스의 별 : ${collectStarRes[0]} / ${collectStarRes[1]}`
                 + '\n' + `거인의 심장 : ${collectGiantRes[0]} / ${collectGiantRes[1]}`
