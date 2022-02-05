@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.fnhZu4y2Giw9449awmBhRmgNzac");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.4IEQNzyYZ9D3pnfii7SmphOaaIA");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -474,7 +474,7 @@ client.on('message', async (message) => {
                 '```css\n' + `${moment().format('a') === "am"
                     ? moment().format('hh') <= 5
                         ? week === 0
-                            ? work[week]
+                            ? work[6]
                             : work[week - 1]
                         : work[week]
                     : work[week]}` + '\n```')
@@ -496,6 +496,7 @@ client.on('message', async (message) => {
             "필드보스\n카오스 게이트\n[ 점령 이벤트 ]",
         ]
 
+        console.log(week, days[week]);
         // "필드보스\n카오스 게이트\n[ 점령 이벤트 ]",      일
         // "카오스 게이트",                                 월
         // "필드보스\n유령선",                              화
@@ -516,7 +517,7 @@ client.on('message', async (message) => {
                 '```css\n' + `${moment().format('a') === "am"
                     ? moment().format('hh') <= 5
                         ? week === 0
-                            ? work[week]
+                            ? work[6]
                             : work[week - 1]
                         : work[week]
                     : work[week]}` + '\n```')
