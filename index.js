@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.yiXaBqFgXPRp9Rexw1Cku7Mejps");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.iMV-aP5TYCrDvABxpBY4DMHSeYQ");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -81,7 +81,9 @@ client.on('message', async (message) => {
     if (command === '!계산기') {
         embed = new Discord.MessageEmbed()
             .setColor('BLACK')
-            .addField('로스트아크 최적화 계산기', '```css\n' + ' https://loa.icepeng.com/ ' + '\n```')
+            .setTitle('Icepeng Calc')
+            .setURL('https://loa.icepeng.com/')
+            .setDescription('[최적화 계산기](https://loa.icepeng.com/)')
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
         return;
