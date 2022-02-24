@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.iMV-aP5TYCrDvABxpBY4DMHSeYQ");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.2srPwPC5XwFIwtV8-ckULuN-TJI");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -88,9 +88,18 @@ client.on('message', async (message) => {
         message.channel.send(embed)
         return;
     }
+    if (command === '!클골') {
+
+        embed = new Discord.MessageEmbed()
+            .setColor('RED')
+            .setTitle('레이드 클리어골드')
+            .setImage('https://i.imgur.com/aWcGXCC.png')
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+        return;
+    }
 
     if (command === '!시너지') {
-
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
             .setTitle('시너지')
