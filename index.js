@@ -15,8 +15,8 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.2srPwPC5XwFIwtV8-ckULuN-TJI");
-client.login(process.env.TOKEN);
+client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.gK-U1OJxaCrIbV5O7vi_4sm_ww0");
+// client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
 // client.on('message', message => {
@@ -54,30 +54,57 @@ client.on('message', async (message) => {
 
     const encodeNickName = encodeURI(nickname);
 
-    // const getHtml = async () => {
-    //     try {
-    //         return await axios.get(`https://lostark.game.onstove.com/Profile/Character/${encodeNickName}`);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-    // getHtml()
-    //     .then(html => {
-    //         const $ = cheerio.load(html.data);
-    //         const test1 = $('href[#lui-tab1-1]').text();
-    //         console.log(test1);
-    //     })                                                         수집품 어떻게 가져와야?
+    if (command === '!예상클골') {
 
-    // setInterval(function () {
-    //     if (moment().format('mm') === "35") {
-    //         embed = new Discord.MessageEmbed()
-    //             .setColor('RED')
-    //             .addField(`${name}님!`, `테스트`)
-    //             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
-    //         message.channel.send(embed)
-    //         return;
-    //     }
-    // }, 60000)
+        const encodeNickName = encodeURI(nickname);
+        let html = await axios.get(`https://lostark.game.onstove.com/Profile/Character/${encodeNickName}`);
+        let $ = cheerio.load(html.data);
+        // console.log($(".lui-tab__menu").children("a").text());
+        // console.log($("div#profile-collection div"));
+
+        const userName = $("span.profile-character-info__name").text();
+        const server = $('span.profile-character-info__server').attr('title') ? $('span.profile-character-info__server').attr('title').slice(1) : undefined;
+
+        if (server === undefined || nickname === undefined) {
+            embed = new Discord.MessageEmbed()
+                .setColor('RED')
+                .setTitle('캐릭터 정보가 없습니다')
+                .setDescription(`다시 한번 확인해 주세요`)
+                .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+            message.channel.send(embed)
+            return;
+        }
+        const job = $("img.profile-character-info__img").attr("alt");
+        const icon = $('img.profile-character-info__img').attr('src');
+        const itemLevel = $('div.level-info2__expedition span:nth-of-type(2)').text();
+
+        const stringLevel = itemLevel.slice(3);
+        const removeLevel = stringLevel.replace(',', '');
+        const resultLevel = Math.floor(removeLevel);
+
+        // 아이템레벨까지 개발
+        console.log(resultLevel)
+
+
+
+        embed = new Discord.MessageEmbed()
+            .setColor('BLUE')
+            .setThumbnail(`${icon}`)
+            .addField('닉네임', '```css\n' + userName + ' [' + server + ']' + '\n```')
+            .addField('아이템레벨', '```cs\n' + itemLevel + '\n```', false)
+            .addField('직업', '```fix\n' + job + '\n```', false)
+            .addField('레이드', '```fix\n' + job + '\n```', false)
+            // .addFields(
+            //     { name: '\u200B', value: '\u200B' },
+            //     { name: '아이템 레벨', value: '```css\n' + itemLevel + '\n```', inline: true },
+            //     { name: '레이드', value: '```fix\n' + itemLevel + '\n```', inline: true },
+            // )
+            .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
+        message.channel.send(embed)
+
+
+    }
+
     if (command === '!계산기') {
         embed = new Discord.MessageEmbed()
             .setColor('BLACK')
@@ -89,7 +116,6 @@ client.on('message', async (message) => {
         return;
     }
     if (command === '!클골') {
-
         embed = new Discord.MessageEmbed()
             .setColor('RED')
             .setTitle('레이드 클리어골드')
@@ -157,7 +183,7 @@ client.on('message', async (message) => {
         // console.log($("div#profile-collection div"));
 
         const userName = $("span.profile-character-info__name").text();
-        const server = $('span.profile-character-info__server').attr('title').slice(1);
+        const server = $('span.profile-character-info__server').attr('title') ? $('span.profile-character-info__server').attr('title').slice(1) : undefined;
 
         if (server === undefined || nickname === undefined) {
             embed = new Discord.MessageEmbed()
