@@ -15,7 +15,7 @@ client.once('ready', () => {
 });
 
 // 봇과 서버를 연결해주는 부분
-// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.gK-U1OJxaCrIbV5O7vi_4sm_ww0");
+// client.login("ODkxOTczMjAwMDg5NjA4MjAy.YVGIxg.swdS6wfjpoF5Tz5O3y5LijD_Qu4");
 client.login(process.env.TOKEN);
 
 // 디스코드 서버에 작성되는 모든 메시지를 수신하는 리스너
@@ -83,26 +83,48 @@ client.on('message', async (message) => {
         const resultLevel = Math.floor(removeLevel);
 
         // 아이템레벨까지 개발
-        console.log(resultLevel)
-
-
+        console.log(resultLevel);
 
         embed = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setThumbnail(`${icon}`)
             .addField('닉네임', '```css\n' + userName + ' [' + server + ']' + '\n```')
-            .addField('아이템레벨', '```cs\n' + itemLevel + '\n```', false)
-            .addField('직업', '```fix\n' + job + '\n```', false)
-            .addField('레이드', '```fix\n' + job + '\n```', false)
-            // .addFields(
-            //     { name: '\u200B', value: '\u200B' },
-            //     { name: '아이템 레벨', value: '```css\n' + itemLevel + '\n```', inline: true },
-            //     { name: '레이드', value: '```fix\n' + itemLevel + '\n```', inline: true },
-            // )
+            .addField('아이템레벨', '```cs\n' + itemLevel + '\n```', true)
+            .addField('예상 획득 골드', '```fix\n' +
+                clearGold(resultLevel)
+                + '\n```', true)
             .setFooter('제작 : WhiteDog', 'https://i.imgur.com/bdt7JQz.gif');
         message.channel.send(embed)
 
-
+        function clearGold(lv) {
+            if (lv < 1370) {
+                return '1,300 골드';
+            } else if (lv < 1415) {
+                return '2,900 골드';
+            } else if (lv < 1430) {
+                return '4,100 골드';
+            } else if (lv < 1445) {
+                return '6,600 골드';
+            } else if (lv < 1460) {
+                return '8,600 골드';
+            } else if (lv < 1475) {
+                return '10,600 골드';
+            } else if (lv < 1490) {
+                return '13,500 골드';
+            } else if (lv < 1500) {
+                return '13,500 골드';
+            } else if (lv < 1520) {
+                return '15,000 골드';
+            } else if (lv < 1540) {
+                return '17,500 골드';
+            } else if (lv < 1550) {
+                return '18,500 골드';
+            } else if (lv < 1560) {
+                return '19,000 골드';
+            } else {
+                return '19,500 골드';
+            }
+        }
     }
 
     if (command === '!계산기') {
