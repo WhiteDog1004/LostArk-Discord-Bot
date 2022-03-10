@@ -51,7 +51,7 @@ client.on('message', async (message) => {
     const id = message.author.id; // 디스코드 유저의 고유 아이디 ( 12335325 이런식 )
     const name = message.author.username; // 디스코드 유저의 닉네임
     const filePath = `./data/${id}.json` // 유저 정보가 만들어지는 파일
-
+    
     const encodeNickName = encodeURI(nickname);
 
     if (command === '!예상클골') {
@@ -59,9 +59,6 @@ client.on('message', async (message) => {
         const encodeNickName = encodeURI(nickname);
         let html = await axios.get(`https://lostark.game.onstove.com/Profile/Character/${encodeNickName}`);
         let $ = cheerio.load(html.data);
-        // console.log($(".lui-tab__menu").children("a").text());
-        // console.log($("div#profile-collection div"));
-
         const userName = $("span.profile-character-info__name").text();
         const server = $('span.profile-character-info__server').attr('title') ? $('span.profile-character-info__server').attr('title').slice(1) : undefined;
 
@@ -74,16 +71,12 @@ client.on('message', async (message) => {
             message.channel.send(embed)
             return;
         }
-        const job = $("img.profile-character-info__img").attr("alt");
         const icon = $('img.profile-character-info__img').attr('src');
         const itemLevel = $('div.level-info2__expedition span:nth-of-type(2)').text();
 
         const stringLevel = itemLevel.slice(3);
         const removeLevel = stringLevel.replace(',', '');
         const resultLevel = Math.floor(removeLevel);
-
-        // 아이템레벨까지 개발
-        console.log(resultLevel);
 
         embed = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -160,6 +153,11 @@ client.on('message', async (message) => {
     if (command === '!기능' || command === '!?') {
         embed = new Discord.MessageEmbed()
             .setColor('YELLOW')
+            .addField('!내실 닉네임', '```css\n' + ' 내실 모험물들을 확인합니다 ' + '\n```')
+            .addField('!예상클골 닉네임', '```css\n' + ' 아이템레벨을 비교하여 레이드 클리어 획득 골드를 확인합니다 ' + '\n```')
+            .addField('!계산기', '```css\n' + ' 악세 최적화 계산기 사이트를 확인합니다 ( 개발 : 아이스펭 ) ' + '\n```')
+            .addField('!시너지', '```css\n' + ' 직업 시너지를 확인합니다 ' + '\n```')
+            .addField('!클골', '```css\n' + ' 레이드 클리어 골드를 확인합니다 ' + '\n```')
             .addField('!뽑기 닉네임1 닉네임2 닉네임3 ···', '```css\n' + ' 원하는 인원만큼 입력 가능하고 그중에 한명을 뽑습니다 ' + '\n```')
             .addField('!정보 닉네임', '```css\n' + ' 로스트아크 캐릭터 정보를 가져옵니다 ' + '\n```')
             .addField('!시너지', '```css\n' + ' 직업의 시너지 이미지를 가져옵니다 ' + '\n```')
