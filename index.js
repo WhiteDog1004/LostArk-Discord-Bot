@@ -8,7 +8,6 @@ const moment = require('moment'); // 날짜 라이브러리
 require('moment-timezone');
 moment.tz.setDefault("Asia/Seoul");
 
-
 // discord 봇이 실행될 때 딱 한 번 실행할 코드를 적는 부분
 client.once('ready', () => {
     console.log('Ready!!!');
